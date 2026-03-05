@@ -32,23 +32,15 @@
     cursor: crosshair;
   }
 
-  /* CRT SCANLINE OVERLAY */
   body::after {
     content: '';
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0, 0, 0, 0.15) 2px,
-      rgba(0, 0, 0, 0.15) 4px
-    );
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 4px);
     pointer-events: none;
     z-index: 9999;
   }
 
-  /* CRT FLICKER */
   body::before {
     content: '';
     position: fixed;
@@ -58,7 +50,6 @@
     z-index: 9998;
   }
 
-  /* BOOT SCREEN */
   #boot-screen {
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -79,21 +70,11 @@
     width: 600px;
     line-height: 1.6;
   }
-  #boot-text .cursor {
-    animation: blink 0.6s step-end infinite;
-  }
   @keyframes blink { 50% { opacity: 0; } }
 
-  /* MAIN LAYOUT */
-  #app {
-    display: none;
-    height: 100vh;
-    width: 100vw;
-    flex-direction: column;
-  }
+  #app { display: none; height: 100vh; width: 100vw; flex-direction: column; }
   #app.active { display: flex; }
 
-  /* TOP BAR */
   .top-bar {
     height: 48px;
     background: linear-gradient(180deg, #0f2a15 0%, #0a1a0f 100%);
@@ -104,396 +85,80 @@
     padding: 0 20px;
     flex-shrink: 0;
   }
-  .top-bar .title {
-    font-family: 'VT323', monospace;
-    font-size: 22px;
-    letter-spacing: 4px;
-    color: var(--green);
-    text-shadow: 0 0 10px var(--green-glow);
-  }
-  .top-bar .freq {
-    font-family: 'VT323', monospace;
-    font-size: 20px;
-    color: var(--amber);
-    letter-spacing: 2px;
-  }
-  .top-bar .status {
-    font-size: 12px;
-    color: var(--text-dim);
-    letter-spacing: 1px;
-  }
-  .classification {
-    background: var(--red);
-    color: #000;
-    font-size: 10px;
-    font-weight: bold;
-    padding: 2px 8px;
-    letter-spacing: 3px;
-  }
+  .top-bar .title { font-family: 'VT323', monospace; font-size: 22px; letter-spacing: 4px; color: var(--green); text-shadow: 0 0 10px var(--green-glow); }
+  .top-bar .freq { font-family: 'VT323', monospace; font-size: 20px; color: var(--amber); letter-spacing: 2px; }
+  .top-bar .status { font-size: 12px; color: var(--text-dim); letter-spacing: 1px; }
+  .classification { background: var(--red); color: #000; font-size: 10px; font-weight: bold; padding: 2px 8px; letter-spacing: 3px; }
 
-  /* CONTENT AREA */
-  .content {
-    display: flex;
-    flex: 1;
-    overflow: hidden;
-  }
+  .content { display: flex; flex: 1; overflow: hidden; }
 
-  /* LEFT PANEL - CONTACT LIST */
-  .left-panel {
-    width: 280px;
-    background: var(--panel-bg);
-    border-right: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-  }
-  .panel-header {
-    padding: 12px 16px;
-    border-bottom: 1px solid var(--border);
-    font-size: 11px;
-    letter-spacing: 3px;
-    color: var(--text-dim);
-    text-transform: uppercase;
-  }
-  .contact-list {
-    flex: 1;
-    overflow-y: auto;
-    scrollbar-width: thin;
-    scrollbar-color: var(--green-dark) var(--bg);
-  }
-  .contact-item {
-    padding: 12px 16px;
-    border-bottom: 1px solid #0a2a12;
-    cursor: pointer;
-    transition: all 0.15s;
-    position: relative;
-  }
-  .contact-item:hover {
-    background: #0f2a15;
-  }
-  .contact-item.active {
-    background: #0f3a1a;
-    border-left: 3px solid var(--green);
-  }
-  .contact-item .name {
-    font-size: 14px;
-    font-weight: bold;
-    color: var(--green);
-    margin-bottom: 2px;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  .contact-item .role {
-    font-size: 11px;
-    color: var(--text-dim);
-    letter-spacing: 0.5px;
-  }
-  .contact-item .threat-level {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 9px;
-    padding: 2px 6px;
-    border-radius: 2px;
-    letter-spacing: 1px;
-  }
+  .left-panel { width: 280px; background: var(--panel-bg); border-right: 1px solid var(--border); display: flex; flex-direction: column; flex-shrink: 0; }
+  .panel-header { padding: 12px 16px; border-bottom: 1px solid var(--border); font-size: 11px; letter-spacing: 3px; color: var(--text-dim); text-transform: uppercase; }
+  .contact-list { flex: 1; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--green-dark) var(--bg); }
+  .contact-item { padding: 12px 16px; border-bottom: 1px solid #0a2a12; cursor: pointer; transition: all 0.15s; position: relative; }
+  .contact-item:hover { background: #0f2a15; }
+  .contact-item.active { background: #0f3a1a; border-left: 3px solid var(--green); }
+  .contact-item .name { font-size: 14px; font-weight: bold; color: var(--green); margin-bottom: 2px; text-transform: uppercase; letter-spacing: 1px; }
+  .contact-item .role { font-size: 11px; color: var(--text-dim); letter-spacing: 0.5px; }
+  .contact-item .threat-level { position: absolute; right: 12px; top: 50%; transform: translateY(-50%); font-size: 9px; padding: 2px 6px; border-radius: 2px; letter-spacing: 1px; }
   .threat-level.high { background: #3a0a0a; color: var(--red); border: 1px solid #5a1a1a; }
   .threat-level.med { background: #3a2a0a; color: var(--amber); border: 1px solid #5a3a1a; }
   .threat-level.low { background: #0a2a0a; color: var(--green); border: 1px solid #1a5a2a; }
 
-  /* CENTER - CODEC DISPLAY */
-  .center-panel {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
+  .center-panel { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
 
-  /* CODEC FRAME */
-  .codec-frame {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 30px;
-    gap: 30px;
-    background: linear-gradient(180deg, #0a1a0f 0%, #081408 100%);
-    border-bottom: 1px solid var(--border);
-    min-height: 260px;
-  }
+  .codec-frame { display: flex; align-items: center; justify-content: center; padding: 30px; gap: 30px; background: linear-gradient(180deg, #0a1a0f 0%, #081408 100%); border-bottom: 1px solid var(--border); min-height: 260px; }
+  .portrait-frame { width: 180px; height: 180px; border: 2px solid var(--border); background: #050a05; position: relative; overflow: hidden; flex-shrink: 0; }
+  .portrait-frame::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,255,68,0.03) 3px, rgba(0,255,68,0.03) 6px); pointer-events: none; }
+  .portrait-content { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-family: 'VT323', monospace; font-size: 72px; color: var(--green); text-shadow: 0 0 20px var(--green-glow); background: radial-gradient(circle at center, #0a2a0f 0%, #050a05 70%); }
+  .portrait-right .portrait-content { font-size: 36px; color: var(--text-dim); background: radial-gradient(circle at center, #0a150a 0%, #050a05 70%); }
 
-  .portrait-frame {
-    width: 180px;
-    height: 180px;
-    border: 2px solid var(--border);
-    background: #050a05;
-    position: relative;
-    overflow: hidden;
-    flex-shrink: 0;
-  }
-  .portrait-frame::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 3px,
-      rgba(0, 255, 68, 0.03) 3px,
-      rgba(0, 255, 68, 0.03) 6px
-    );
-    pointer-events: none;
-  }
-  .portrait-content {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'VT323', monospace;
-    font-size: 72px;
-    color: var(--green);
-    text-shadow: 0 0 20px var(--green-glow);
-    background: radial-gradient(circle at center, #0a2a0f 0%, #050a05 70%);
-  }
-
-  /* FREQUENCY DISPLAY */
-  .freq-display {
-    text-align: center;
-    flex-shrink: 0;
-  }
-  .freq-label {
-    font-size: 11px;
-    color: var(--text-dim);
-    letter-spacing: 3px;
-    margin-bottom: 8px;
-  }
-  .freq-number {
-    font-family: 'VT323', monospace;
-    font-size: 52px;
-    color: var(--green);
-    text-shadow: 0 0 20px var(--green-glow), 0 0 40px rgba(0,255,68,0.2);
-    letter-spacing: 4px;
-    line-height: 1;
-  }
-  .freq-sub {
-    font-size: 11px;
-    color: var(--text-dim);
-    letter-spacing: 3px;
-    margin-top: 8px;
-  }
-  .freq-bar {
-    width: 160px;
-    height: 3px;
-    background: var(--green-dark);
-    margin: 12px auto 0;
-    position: relative;
-    overflow: hidden;
-  }
-  .freq-bar::after {
-    content: '';
-    position: absolute;
-    top: 0; left: -50%;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, var(--green), transparent);
-    animation: scan 2s linear infinite;
-  }
+  .freq-display { text-align: center; flex-shrink: 0; }
+  .freq-label { font-size: 11px; color: var(--text-dim); letter-spacing: 3px; margin-bottom: 8px; }
+  .freq-number { font-family: 'VT323', monospace; font-size: 52px; color: var(--green); text-shadow: 0 0 20px var(--green-glow), 0 0 40px rgba(0,255,68,0.2); letter-spacing: 4px; line-height: 1; }
+  .freq-sub { font-size: 11px; color: var(--text-dim); letter-spacing: 3px; margin-top: 8px; }
+  .freq-bar { width: 160px; height: 3px; background: var(--green-dark); margin: 12px auto 0; position: relative; overflow: hidden; }
+  .freq-bar::after { content: ''; position: absolute; top: 0; left: -50%; width: 50%; height: 100%; background: linear-gradient(90deg, transparent, var(--green), transparent); animation: scan 2s linear infinite; }
   @keyframes scan { to { left: 100%; } }
 
-  /* RIGHT PORTRAIT */
-  .portrait-right .portrait-content {
-    font-size: 36px;
-    color: var(--text-dim);
-    background: radial-gradient(circle at center, #0a150a 0%, #050a05 70%);
-  }
+  .dossier-area { flex: 1; overflow-y: auto; padding: 24px 32px; scrollbar-width: thin; scrollbar-color: var(--green-dark) var(--bg); }
+  .dossier-section { margin-bottom: 24px; }
+  .dossier-label { font-size: 10px; letter-spacing: 3px; color: var(--text-dim); text-transform: uppercase; margin-bottom: 6px; border-bottom: 1px solid #0a2a12; padding-bottom: 4px; }
+  .dossier-value { font-size: 14px; color: var(--green); line-height: 1.7; padding-left: 12px; border-left: 2px solid var(--green-dark); }
+  .dossier-value.classified { color: var(--red); font-style: italic; }
+  .dossier-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
 
-  /* DOSSIER CONTENT */
-  .dossier-area {
-    flex: 1;
-    overflow-y: auto;
-    padding: 24px 32px;
-    scrollbar-width: thin;
-    scrollbar-color: var(--green-dark) var(--bg);
-  }
-
-  .dossier-section {
-    margin-bottom: 24px;
-  }
-  .dossier-label {
-    font-size: 10px;
-    letter-spacing: 3px;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    margin-bottom: 6px;
-    border-bottom: 1px solid #0a2a12;
-    padding-bottom: 4px;
-  }
-  .dossier-value {
-    font-size: 14px;
-    color: var(--green);
-    line-height: 1.7;
-    padding-left: 12px;
-    border-left: 2px solid var(--green-dark);
-  }
-  .dossier-value.classified {
-    color: var(--red);
-    font-style: italic;
-  }
-
-  .dossier-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-
-  .tag {
-    display: inline-block;
-    font-size: 10px;
-    padding: 2px 8px;
-    margin: 2px 4px 2px 0;
-    background: #0a2a12;
-    border: 1px solid var(--border);
-    color: var(--green);
-    letter-spacing: 1px;
-  }
+  .tag { display: inline-block; font-size: 10px; padding: 2px 8px; margin: 2px 4px 2px 0; background: #0a2a12; border: 1px solid var(--border); color: var(--green); letter-spacing: 1px; }
   .tag.amber { color: var(--amber); border-color: #5a3a1a; background: #1a1a0a; }
   .tag.red { color: var(--red); border-color: #5a1a1a; background: #1a0a0a; }
-  a.link-tag {
-    text-decoration: none;
-    color: var(--amber);
-    cursor: pointer;
-    transition: all 0.15s;
-  }
-  a.link-tag:hover {
-    background: #2a2a0a;
-    border-color: var(--amber);
-    text-shadow: 0 0 8px rgba(255,170,0,0.4);
-  }
+  a.link-tag { text-decoration: none; color: var(--amber); cursor: pointer; transition: all 0.15s; }
+  a.link-tag:hover { background: #2a2a0a; border-color: var(--amber); text-shadow: 0 0 8px rgba(255,170,0,0.4); }
 
-  /* DIALOG BOX */
-  .dialog-box {
-    background: #0a1a0f;
-    border-top: 1px solid var(--border);
-    padding: 16px 24px;
-    min-height: 80px;
-    flex-shrink: 0;
-  }
-  .dialog-speaker {
-    font-size: 11px;
-    color: var(--amber);
-    letter-spacing: 2px;
-    margin-bottom: 4px;
-  }
-  .dialog-text {
-    font-family: 'VT323', monospace;
-    font-size: 20px;
-    color: var(--green);
-    line-height: 1.4;
-  }
-  .dialog-text .typing-cursor {
-    animation: blink 0.5s step-end infinite;
-    font-weight: bold;
-  }
+  .dialog-box { background: #0a1a0f; border-top: 1px solid var(--border); padding: 16px 24px; min-height: 80px; flex-shrink: 0; }
+  .dialog-speaker { font-size: 11px; color: var(--amber); letter-spacing: 2px; margin-bottom: 4px; }
+  .dialog-text { font-family: 'VT323', monospace; font-size: 20px; color: var(--green); line-height: 1.4; }
+  .dialog-text .typing-cursor { animation: blink 0.5s step-end infinite; font-weight: bold; }
 
-  /* RIGHT PANEL - INTEL */
-  .right-panel {
-    width: 240px;
-    background: var(--panel-bg);
-    border-left: 1px solid var(--border);
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-  }
-  .intel-section {
-    padding: 12px 16px;
-    border-bottom: 1px solid #0a2a12;
-  }
-  .intel-label {
-    font-size: 9px;
-    letter-spacing: 3px;
-    color: var(--text-dim);
-    margin-bottom: 6px;
-  }
-  .intel-value {
-    font-size: 13px;
-    color: var(--green);
-    line-height: 1.5;
-  }
-  .intel-value a {
-    color: var(--amber);
-    text-decoration: none;
-  }
-  .intel-value a:hover {
-    text-decoration: underline;
-  }
+  .right-panel { width: 240px; background: var(--panel-bg); border-left: 1px solid var(--border); flex-shrink: 0; display: flex; flex-direction: column; overflow-y: auto; }
+  .intel-section { padding: 12px 16px; border-bottom: 1px solid #0a2a12; }
+  .intel-label { font-size: 9px; letter-spacing: 3px; color: var(--text-dim); margin-bottom: 6px; }
+  .intel-value { font-size: 13px; color: var(--green); line-height: 1.5; }
+  .intel-value a { color: var(--amber); text-decoration: none; }
+  .intel-value a:hover { text-decoration: underline; }
 
-  .status-indicator {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    margin: 4px 0;
-    font-size: 12px;
-  }
-  .status-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--green);
-    animation: pulse 2s infinite;
-  }
+  .status-indicator { display: flex; align-items: center; gap: 6px; margin: 4px 0; font-size: 12px; }
+  .status-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
   .status-dot.amber { background: var(--amber); }
   .status-dot.red { background: var(--red); }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
+  @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
 
-  /* WELCOME SCREEN */
-  .welcome {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 40px;
-  }
-  .welcome h1 {
-    font-family: 'VT323', monospace;
-    font-size: 48px;
-    color: var(--green);
-    text-shadow: 0 0 30px var(--green-glow);
-    letter-spacing: 8px;
-    margin-bottom: 16px;
-  }
-  .welcome p {
-    font-size: 13px;
-    color: var(--text-dim);
-    letter-spacing: 2px;
-    line-height: 2;
-  }
-  .welcome .event-info {
-    margin-top: 24px;
-    padding: 16px 24px;
-    border: 1px solid var(--border);
-    background: #0a1a0f;
-    text-align: left;
-  }
+  .welcome { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px; }
+  .welcome h1 { font-family: 'VT323', monospace; font-size: 48px; color: var(--green); text-shadow: 0 0 30px var(--green-glow); letter-spacing: 8px; margin-bottom: 16px; }
+  .welcome p { font-size: 13px; color: var(--text-dim); letter-spacing: 2px; line-height: 2; }
+  .welcome .event-info { margin-top: 24px; padding: 16px 24px; border: 1px solid var(--border); background: #0a1a0f; text-align: left; }
 
-  /* AUDIO BARS ANIMATION */
-  .audio-bars {
-    display: flex;
-    align-items: flex-end;
-    gap: 2px;
-    height: 20px;
-    margin-top: 8px;
-  }
-  .audio-bar {
-    width: 3px;
-    background: var(--green);
-    animation: audioBar 0.8s ease-in-out infinite alternate;
-  }
+  .audio-bars { display: flex; align-items: flex-end; gap: 2px; height: 20px; margin-top: 8px; }
+  .audio-bar { width: 3px; background: var(--green); animation: audioBar 0.8s ease-in-out infinite alternate; }
   .audio-bar:nth-child(1) { height: 6px; animation-delay: 0s; }
   .audio-bar:nth-child(2) { height: 12px; animation-delay: 0.1s; }
   .audio-bar:nth-child(3) { height: 8px; animation-delay: 0.2s; }
@@ -501,42 +166,213 @@
   .audio-bar:nth-child(5) { height: 10px; animation-delay: 0.25s; }
   .audio-bar:nth-child(6) { height: 14px; animation-delay: 0.05s; }
   .audio-bar:nth-child(7) { height: 7px; animation-delay: 0.3s; }
-  @keyframes audioBar {
-    to { height: 3px; }
-  }
+  @keyframes audioBar { to { height: 3px; } }
 
-  /* STATIC NOISE */
-  .static-overlay {
-    position: fixed;
-    top: 0; left: 0; right: 0; bottom: 0;
-    pointer-events: none;
-    z-index: 9997;
-    opacity: 0.02;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-    animation: staticShift 0.1s steps(5) infinite;
-  }
-  @keyframes staticShift {
-    0% { transform: translate(0, 0); }
-    25% { transform: translate(-1px, 1px); }
-    50% { transform: translate(1px, -1px); }
-    75% { transform: translate(-1px, -1px); }
-    100% { transform: translate(1px, 1px); }
-  }
+  .static-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; pointer-events: none; z-index: 9997; opacity: 0.02; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E"); animation: staticShift 0.1s steps(5) infinite; }
+  @keyframes staticShift { 0% { transform: translate(0, 0); } 25% { transform: translate(-1px, 1px); } 50% { transform: translate(1px, -1px); } 75% { transform: translate(-1px, -1px); } 100% { transform: translate(1px, 1px); } }
 
-  /* Scrollbar */
   ::-webkit-scrollbar { width: 6px; }
   ::-webkit-scrollbar-track { background: var(--bg); }
   ::-webkit-scrollbar-thumb { background: var(--green-dark); border-radius: 3px; }
   ::-webkit-scrollbar-thumb:hover { background: var(--border); }
 
-  /* CODEC CALL ANIMATION */
-  .codec-calling {
-    animation: codecRing 0.15s linear 6;
+  .codec-calling { animation: codecRing 0.15s linear 6; }
+  @keyframes codecRing { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-2px); } 75% { transform: translateX(2px); } }
+
+  /* DEEP DOSSIER BUTTON */
+  .deep-btn {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 8px 20px;
+    background: #0a2a12;
+    border: 1px solid var(--amber);
+    color: var(--amber);
+    font-family: 'VT323', monospace;
+    font-size: 18px;
+    letter-spacing: 3px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-transform: uppercase;
   }
-  @keyframes codecRing {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-2px); }
-    75% { transform: translateX(2px); }
+  .deep-btn:hover {
+    background: #1a2a0a;
+    box-shadow: 0 0 15px rgba(255,170,0,0.3);
+    text-shadow: 0 0 8px rgba(255,170,0,0.5);
+  }
+
+  /* DEEP DOSSIER MODAL */
+  .deep-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.85);
+    z-index: 10001;
+    align-items: center;
+    justify-content: center;
+  }
+  .deep-modal-overlay.active { display: flex; }
+  .deep-modal {
+    width: 800px;
+    max-height: 90vh;
+    background: var(--bg);
+    border: 2px solid var(--border);
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: var(--green-dark) var(--bg);
+    position: relative;
+  }
+
+  .deep-header {
+    display: flex;
+    align-items: stretch;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, #0f2a15 0%, #081408 100%);
+  }
+
+  /* CODEC PORTRAIT PHOTO */
+  .codec-photo {
+    width: 200px;
+    height: 220px;
+    flex-shrink: 0;
+    position: relative;
+    overflow: hidden;
+    background: #050a05;
+    border-right: 2px solid var(--border);
+  }
+  .codec-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) brightness(1.1) contrast(1.2);
+    mix-blend-mode: screen;
+    opacity: 0;
+  }
+  .codec-photo .green-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: #0a2a0f;
+  }
+  .codec-photo.loaded .green-overlay {
+    background: rgba(0, 80, 20, 0.6);
+  }
+  .codec-photo.loaded img {
+    opacity: 1;
+  }
+  .codec-photo::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.2) 2px, rgba(0,0,0,0.2) 4px);
+    pointer-events: none;
+    z-index: 2;
+  }
+  .codec-photo::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    box-shadow: inset 0 0 40px rgba(0,255,68,0.15);
+    z-index: 3;
+    pointer-events: none;
+  }
+  .codec-photo .no-photo {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'VT323', monospace;
+    font-size: 64px;
+    color: var(--green);
+    text-shadow: 0 0 20px var(--green-glow);
+    z-index: 1;
+  }
+
+  .deep-header-info {
+    flex: 1;
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .deep-header-info .deep-name {
+    font-family: 'VT323', monospace;
+    font-size: 32px;
+    color: var(--green);
+    text-shadow: 0 0 15px var(--green-glow);
+    letter-spacing: 4px;
+    margin-bottom: 4px;
+  }
+  .deep-header-info .deep-codename {
+    font-size: 13px;
+    color: var(--amber);
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+  }
+  .deep-header-info .deep-role {
+    font-size: 13px;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .deep-close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-family: 'VT323', monospace;
+    font-size: 24px;
+    color: var(--red);
+    cursor: pointer;
+    z-index: 5;
+    background: none;
+    border: 1px solid #5a1a1a;
+    padding: 2px 10px;
+    transition: all 0.15s;
+  }
+  .deep-close:hover { background: #3a0a0a; }
+
+  .deep-body { padding: 24px; }
+
+  .deep-body .dossier-section { margin-bottom: 20px; }
+
+  /* AFFILIATE CARD */
+  .affiliate-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding-left: 12px;
+  }
+  .affiliate-card {
+    background: #0a1a0f;
+    border: 1px solid #0a2a12;
+    padding: 10px 12px;
+    transition: border-color 0.15s;
+  }
+  .affiliate-card:hover { border-color: var(--border); }
+  .affiliate-card .af-name {
+    font-size: 13px;
+    color: var(--green);
+    font-weight: bold;
+    margin-bottom: 2px;
+  }
+  .affiliate-card .af-role {
+    font-size: 11px;
+    color: var(--amber);
+    margin-bottom: 4px;
+  }
+  .affiliate-card .af-conn {
+    font-size: 10px;
+    color: var(--text-dim);
+    line-height: 1.4;
+  }
+
+  .deep-classified {
+    text-align: center;
+    padding: 30px;
+    color: var(--red);
+    font-family: 'VT323', monospace;
+    font-size: 24px;
+    letter-spacing: 4px;
+    border: 1px dashed #5a1a1a;
+    margin: 12px;
   }
 </style>
 </head>
@@ -544,14 +380,11 @@
 
 <div class="static-overlay"></div>
 
-<!-- BOOT SEQUENCE -->
 <div id="boot-screen">
   <div id="boot-text"></div>
 </div>
 
-<!-- MAIN APP -->
 <div id="app">
-  <!-- TOP BAR -->
   <div class="top-bar">
     <span class="classification">TOP SECRET // CLAWCON</span>
     <span class="title">CODEC DOSSIER SYSTEM v2.71</span>
@@ -560,15 +393,12 @@
   </div>
 
   <div class="content">
-    <!-- LEFT: CONTACTS -->
     <div class="left-panel">
       <div class="panel-header">FIELD CONTACTS // 12 ASSETS</div>
       <div class="contact-list" id="contact-list"></div>
     </div>
 
-    <!-- CENTER: CODEC + DOSSIER -->
     <div class="center-panel" id="center-panel">
-      <!-- Welcome Screen (shown by default) -->
       <div class="welcome" id="welcome-screen">
         <h1>CLAWCON NYC</h1>
         <p>CODEC INTELLIGENCE DOSSIER SYSTEM</p>
@@ -585,112 +415,76 @@
         </div>
         <p style="margin-top: 20px; font-size: 11px;">SELECT A CONTACT TO VIEW DOSSIER</p>
         <div class="audio-bars" style="margin-top: 12px;">
-          <div class="audio-bar"></div>
-          <div class="audio-bar"></div>
-          <div class="audio-bar"></div>
-          <div class="audio-bar"></div>
-          <div class="audio-bar"></div>
-          <div class="audio-bar"></div>
-          <div class="audio-bar"></div>
+          <div class="audio-bar"></div><div class="audio-bar"></div><div class="audio-bar"></div><div class="audio-bar"></div><div class="audio-bar"></div><div class="audio-bar"></div><div class="audio-bar"></div>
         </div>
       </div>
 
-      <!-- Active Dossier View (hidden by default) -->
       <div id="dossier-view" style="display:none; flex-direction:column; flex:1; overflow:hidden;">
         <div class="codec-frame" id="codec-frame">
-          <div class="portrait-frame">
-            <div class="portrait-content" id="portrait-left">?</div>
-          </div>
+          <div class="portrait-frame"><div class="portrait-content" id="portrait-left">?</div></div>
           <div class="freq-display">
             <div class="freq-label">FREQUENCY</div>
             <div class="freq-number" id="freq-display">141.80</div>
             <div class="freq-sub">MEMORY</div>
             <div class="freq-bar"></div>
             <div class="audio-bars" style="justify-content:center; margin-top:12px;">
-              <div class="audio-bar"></div>
-              <div class="audio-bar"></div>
-              <div class="audio-bar"></div>
-              <div class="audio-bar"></div>
-              <div class="audio-bar"></div>
-              <div class="audio-bar"></div>
-              <div class="audio-bar"></div>
+              <div class="audio-bar"></div><div class="audio-bar"></div><div class="audio-bar"></div><div class="audio-bar"></div><div class="audio-bar"></div><div class="audio-bar"></div><div class="audio-bar"></div>
             </div>
           </div>
-          <div class="portrait-frame portrait-right">
-            <div class="portrait-content" id="portrait-right">CMD</div>
-          </div>
+          <div class="portrait-frame portrait-right"><div class="portrait-content" id="portrait-right">CMD</div></div>
         </div>
-
         <div class="dossier-area" id="dossier-content"></div>
-
         <div class="dialog-box">
           <div class="dialog-speaker" id="dialog-speaker">COMMAND</div>
-          <div class="dialog-text" id="dialog-text">
-            Select a contact to view their dossier.<span class="typing-cursor">_</span>
-          </div>
+          <div class="dialog-text" id="dialog-text">Select a contact to view their dossier.<span class="typing-cursor">_</span></div>
         </div>
       </div>
     </div>
 
-    <!-- RIGHT: INTEL -->
     <div class="right-panel" id="right-panel">
       <div class="panel-header">SIGNAL INTEL</div>
-      <div class="intel-section">
-        <div class="intel-label">OPERATION</div>
-        <div class="intel-value">CLAWCON NYC</div>
-      </div>
-      <div class="intel-section">
-        <div class="intel-label">DATE</div>
-        <div class="intel-value">2026.03.04</div>
-      </div>
-      <div class="intel-section">
-        <div class="intel-label">LOCATION</div>
-        <div class="intel-value">NEW YORK CITY</div>
-      </div>
-      <div class="intel-section">
-        <div class="intel-label">COVER ORG</div>
-        <div class="intel-value">KILO CODE</div>
-      </div>
-      <div class="intel-section">
-        <div class="intel-label">ASSETS LOGGED</div>
-        <div class="intel-value">12 CONTACTS</div>
-      </div>
+      <div class="intel-section"><div class="intel-label">OPERATION</div><div class="intel-value">CLAWCON NYC</div></div>
+      <div class="intel-section"><div class="intel-label">DATE</div><div class="intel-value">2026.03.04</div></div>
+      <div class="intel-section"><div class="intel-label">LOCATION</div><div class="intel-value">NEW YORK CITY</div></div>
+      <div class="intel-section"><div class="intel-label">COVER ORG</div><div class="intel-value">KILO CODE</div></div>
+      <div class="intel-section"><div class="intel-label">ASSETS LOGGED</div><div class="intel-value">12 CONTACTS</div></div>
       <div class="intel-section">
         <div class="intel-label">CHANNEL STATUS</div>
-        <div class="status-indicator">
-          <div class="status-dot"></div>
-          <span>SECURE</span>
-        </div>
-        <div class="status-indicator">
-          <div class="status-dot amber"></div>
-          <span>MONITORING</span>
-        </div>
+        <div class="status-indicator"><div class="status-dot"></div><span>SECURE</span></div>
+        <div class="status-indicator"><div class="status-dot amber"></div><span>MONITORING</span></div>
       </div>
-      <div class="intel-section" id="intel-links" style="display:none;">
-        <div class="intel-label">EXTERNAL INTEL</div>
-        <div class="intel-value" id="intel-links-content"></div>
-      </div>
-      <div class="intel-section" id="intel-tags" style="display:none;">
-        <div class="intel-label">CLASSIFICATIONS</div>
-        <div class="intel-value" id="intel-tags-content"></div>
-      </div>
+      <div class="intel-section" id="intel-links" style="display:none;"><div class="intel-label">EXTERNAL INTEL</div><div class="intel-value" id="intel-links-content"></div></div>
+      <div class="intel-section" id="intel-tags" style="display:none;"><div class="intel-label">CLASSIFICATIONS</div><div class="intel-value" id="intel-tags-content"></div></div>
     </div>
   </div>
 </div>
 
+<!-- DEEP DOSSIER MODAL -->
+<div class="deep-modal-overlay" id="deep-modal-overlay">
+  <div class="deep-modal" id="deep-modal">
+    <button class="deep-close" id="deep-close">[X] CLOSE</button>
+    <div class="deep-header">
+      <div class="codec-photo" id="deep-photo">
+        <div class="green-overlay"></div>
+        <img id="deep-photo-img" src="" alt="">
+        <div class="no-photo" id="deep-no-photo"></div>
+      </div>
+      <div class="deep-header-info">
+        <div class="deep-name" id="deep-name"></div>
+        <div class="deep-codename" id="deep-codename"></div>
+        <div class="deep-role" id="deep-role"></div>
+      </div>
+    </div>
+    <div class="deep-body" id="deep-body"></div>
+  </div>
+</div>
+
 <script>
-// ===== CONTACT DATA =====
-// Links now use {label, url} for clickable hrefs
 const contacts = [
   {
-    id: 1,
-    name: "Austin Tierney",
-    codename: "MUTINEER",
-    role: "Product Manager",
-    org: "Mutiny",
-    freq: "140.85",
-    initials: "AT",
-    threat: "low",
+    id: 1, name: "Austin Tierney", codename: "MUTINEER", role: "Product Manager", org: "Mutiny",
+    freq: "140.85", initials: "AT", threat: "low",
+    photoUrl: "https://pbs.twimg.com/profile_images/1884351743032442881/EhThUhc3_400x400.jpg",
     bio: "NYC-based product strategist with deep consumer tech roots. Former Snapchat PM where he coordinated the Geofilter program. Progressed through senior roles at Seated, Freshly, and Delmondo before founding Zolenda. Now driving product at Mutiny, an AI-powered B2B marketing platform that personalizes websites for target accounts.",
     background: "Prior experience at Snaps and Delmondo in the social media intelligence space. Known for bridging consumer product intuition with enterprise AI applications.",
     notable: "Former Snapchat PM; Founded Zolenda; Now at AI-powered Mutiny platform",
@@ -700,17 +494,19 @@ const contacts = [
       { label: "LINKEDIN", handle: "austintierney", url: "https://www.linkedin.com/in/austintierney" },
       { label: "WEB", handle: "austintierney.com", url: "https://austintierney.com" }
     ],
+    affiliates: [
+      { name: "Jaleh Rezaei", role: "CEO & Co-Founder, Mutiny", connection: "Company CEO at Mutiny" },
+      { name: "Nikhil Mathew", role: "CTO & Co-Founder, Mutiny", connection: "Co-founder of Mutiny" },
+      { name: "Brice Gumpel", role: "CEO, Seated Technologies", connection: "Former boss at Seated" },
+      { name: "Ryan Narod", role: "Head of Marketing, Mutiny", connection: "Colleague at Mutiny" },
+      { name: "Julio Bermudez", role: "CRO, Mutiny", connection: "Executive leadership at Mutiny" }
+    ],
     dialog: "Product Manager at Mutiny. Former Snapchat operative. Knows how to turn AI into revenue."
   },
   {
-    id: 2,
-    name: "Cole Magnacca",
-    codename: "BENCHMOB",
-    role: "Creative Lead",
-    org: "Benchmob",
-    freq: "141.12",
-    initials: "CM",
-    threat: "med",
+    id: 2, name: "Cole Magnacca", codename: "BENCHMOB", role: "Creative Lead", org: "Benchmob",
+    freq: "141.12", initials: "CM", threat: "med",
+    photoUrl: "https://cdn.theorg.com/33cda73f-a38a-42ed-bec2-2e8718aee709_medium.jpg",
     bio: "Emerson College graduate in Visual Media Arts. Creative Producer and Content Creator operating between NYC and LA. Currently Creative Lead (Brands) at Benchmob. Previously produced content at SuperBloom House, ZeroSpace, STEREO, and Missing Piece Group.",
     background: "Produced Chili's highest-performing organic content ever with 15M+ views. Shot and edited Sonic content achieving 50M+ views across platforms. Has worked with HBO, Adobe, Warner Records, and Arizona Iced Tea. Collaborates with music artists including bbno$, Audrey Nuna, and Dev Lemons.",
     notable: "15M+ views on single Chili's campaign; 50M+ views Sonic content; Also indie pop musician and comedian; 24K+ TikTok followers",
@@ -719,130 +515,124 @@ const contacts = [
       { label: "LINKEDIN", handle: "cole-magnacca", url: "https://www.linkedin.com/in/cole-magnacca" },
       { label: "WEB", handle: "colemagnacca.com", url: "https://colemagnacca.com" }
     ],
+    affiliates: [
+      { name: "Jahan Karimaghayi", role: "Founder & CEO, Benchmob", connection: "Company founder at Benchmob" },
+      { name: "Michael Eschenbach", role: "Head of Brands, Benchmob", connection: "Direct colleague at Benchmob" },
+      { name: "Collin Sommers", role: "COO, Benchmob", connection: "Senior leadership at Benchmob" },
+      { name: "Morganne Yambrovich", role: "Content Strategist, Benchmob", connection: "Content team colleague" },
+      { name: "Keren Ben-Moshe", role: "Director of Strategy, Benchmob", connection: "Brands division colleague" }
+    ],
     dialog: "Creative operative. Weaponizes content for maximum viral impact. Also moonlights as a musician."
   },
   {
-    id: 3,
-    name: "Andrew Hong",
-    codename: "ILEMI",
-    role: "Software Engineer",
-    org: "Dune Analytics",
-    freq: "140.96",
-    initials: "AH",
-    threat: "med",
+    id: 3, name: "Andrew Hong", codename: "ILEMI", role: "Software Engineer", org: "Dune Analytics",
+    freq: "140.96", initials: "AH", threat: "med",
+    photoUrl: "https://avatars.githubusercontent.com/u/47720952?v=4",
     bio: "Known online as 'ilemi.' Head of Education / Headmaster at Dune Analytics, the premier web3 data platform. Previously Data Scientist at Mirror and Technical Business Analyst at ConsenSys (Ethereum infrastructure).",
-    background: "Founded Herd, a smart contract visualizer tool. Deep expertise in on-chain data analysis and blockchain infrastructure. Runs the Crypto Data Bytes Substack, educating others on web3 analytics.",
-    notable: "Headmaster at Dune Analytics; Founded Herd (smart contract visualizer); Former ConsenSys",
+    background: "Co-founded Herd Labs with Edward Bramanti in 2024, raising $4.8M to build the 'crypto coterminal.' Runs the Crypto Data Bytes Substack (7K+ subscribers) and leads the Bytexplorers community. Deep expertise in on-chain data analysis.",
+    notable: "Co-founded Herd Labs ($4.8M raised); Headmaster at Dune; OurNetwork contributor; Former ConsenSys",
     tags: ["WEB3", "DATA", "BLOCKCHAIN", "EDUCATION"],
     links: [
       { label: "TWITTER", handle: "@andrewhong5297", url: "https://x.com/andrewhong5297" },
       { label: "GITHUB", handle: "andrewhong5297", url: "https://github.com/andrewhong5297" },
       { label: "SUBSTACK", handle: "Crypto Data Bytes", url: "https://substack.com/@andrewhong5297" }
     ],
+    affiliates: [
+      { name: "Edward Bramanti", role: "Co-Founder & CTO, Herd Labs", connection: "Co-founded Herd Labs; both ex-Dune" },
+      { name: "Spencer Noon", role: "Co-Founder, Variant Fund", connection: "OurNetwork collaborator" },
+      { name: "Fredrik Haga", role: "Co-Founder & CEO, Dune Analytics", connection: "Boss at Dune Analytics" },
+      { name: "Jackie Zhang", role: "Team Member, Dune Analytics", connection: "Co-presented at Columbia University" },
+      { name: "0xBoxer", role: "Analytics Engineer, Dune", connection: "Fellow Dune Wizard" }
+    ],
     dialog: "Blockchain data specialist. If it happened on-chain, he already knows about it."
   },
   {
-    id: 4,
-    name: "Mark Jeresulearn",
-    codename: "GHOST",
-    role: "Software Engineer / Crypto",
-    org: "Independent",
-    freq: "142.52",
-    initials: "MJ",
-    threat: "high",
+    id: 4, name: "Mark Jeresulearn", codename: "GHOST", role: "Software Engineer / Crypto", org: "Independent",
+    freq: "142.52", initials: "MJ", threat: "high", photoUrl: null,
     bio: "Software engineer with interests in cryptocurrency. Operates with minimal public digital footprint. No publicly indexed social media profiles or professional pages located under this name.",
     background: "[REDACTED] -- No open-source intelligence available. Subject maintains exceptional operational security. Name spelling may be an alias or variant.",
     notable: "ZERO digital footprint detected. Either running dark or using an alias. Highest OPSEC rating in this dossier.",
     tags: ["CRYPTO", "ENGINEER", "OPSEC", "DARK"],
-    links: [],
+    links: [], affiliates: [],
     dialog: "A ghost. Zero digital footprint. Either extremely careful... or extremely dangerous."
   },
   {
-    id: 5,
-    name: "JC Tan",
-    codename: "MATCHMAKER",
-    role: "Founder",
-    org: "Horizon Analytics Labs",
-    freq: "141.38",
-    initials: "JC",
-    threat: "low",
-    bio: "Full name Jun C. Tan. University of Michigan alumnus. Serial entrepreneur who previously founded Intros AI, an AI-powered community introductions platform that facilitated over 1 million connections across 1,000+ communities before being acquired by Bevy.",
-    background: "Built and sold Intros AI after 5 years of development. Now leading engineering at TradePulse Solutions LLC and developing projects under Horizon Analytics Labs. Technical founder with deep community-tech expertise.",
-    notable: "Founded & sold Intros AI to Bevy (1M+ connections facilitated); UMich alumnus; Now at Horizon Analytics Labs",
-    tags: ["FOUNDER", "AI", "ACQUIRED", "COMMUNITY-TECH"],
+    id: 5, name: "JC Tan", codename: "MATCHMAKER", role: "Head of Engineering", org: "TradePulse Solutions",
+    freq: "141.38", initials: "JC", threat: "low", photoUrl: null,
+    bio: "Full name Jun C. Tan. University of Michigan alumnus (BS Computer Science, 2018-2022). Currently Head of Engineering at TradePulse Solutions LLC, leading technical infrastructure for hedge funds managing $100M+ in trading volume.",
+    background: "Career: Databento (Software Engineer) -> Rainmaker (Senior SWE) -> TradePulse (Senior SWE -> Head of Engineering). Board member at MProduct, UMich's first Product Management Club. Associated with Horizon Analytics Labs.",
+    notable: "Head of Engineering at TradePulse ($100M+ trading volume); UMich CS grad; MProduct board member",
+    tags: ["FOUNDER", "AI", "FINTECH", "COMMUNITY-TECH"],
     links: [
       { label: "LINKEDIN", handle: "jun-c-tan", url: "https://www.linkedin.com/in/jun-c-tan" },
       { label: "WEB", handle: "horizonanalyticslabs.com", url: "https://flur.horizonanalyticslabs.com" }
     ],
-    dialog: "The Matchmaker. Built an AI that connected a million people, then sold it. Now analyzing horizons."
+    affiliates: [
+      { name: "David Kobrosky", role: "CEO, Intros AI (acquired by Bevy)", connection: "Intros AI leadership" },
+      { name: "Robert Levy", role: "CTO, Intros AI", connection: "Intros AI co-founder, ex-Goldman Sachs" },
+      { name: "Espree Devora", role: "Advisor, Intros AI", connection: "Startup advisor" }
+    ],
+    dialog: "The Matchmaker. Engineering lead managing $100M+ in hedge fund trades. Now analyzing horizons."
   },
   {
-    id: 6,
-    name: "Dylan Gibbs",
-    codename: "DOWNUNDER",
-    role: "Co-Founder & CTO",
-    org: "MigrateMate",
-    freq: "140.67",
-    initials: "DG",
-    threat: "low",
+    id: 6, name: "Dylan Gibbs", codename: "DOWNUNDER", role: "Co-Founder & CTO", org: "MigrateMate",
+    freq: "140.67", initials: "DG", threat: "low",
+    photoUrl: "https://infixstudio.com/wp-content/uploads/2025/11/image-1-768x1024.png",
     bio: "Australian entrepreneur based between London and NYC. Co-founded Migrate Mate with Mihailo Bozic. Serves as the technical co-founder and CTO, having built the entire platform. Backed by Redbud VC.",
-    background: "Forbes 30 Under 30 (2025). Platform hit 1,000 paid users in just 13 weeks, then scaled 10x in 4 months. Company is already profitable. Vision to help a billion people navigate immigration and relocation.",
+    background: "Forbes 30 Under 30 (2025, Social Impact). Platform hit 1,000 paid users in just 13 weeks, then scaled 10x in 4 months. Company is already profitable. The first job platform curating visa-sponsoring roles in the US.",
     notable: "Forbes 30 Under 30; Profitable in record time; Built entire platform solo as CTO",
     tags: ["FOUNDER", "FORBES 30U30", "IMMIGRATION-TECH", "PROFITABLE"],
     links: [
       { label: "LINKEDIN", handle: "dylan-gibbs", url: "https://www.linkedin.com/in/dylan-gibbs" },
-      { label: "TWITTER", handle: "@thedylangibbs", url: "https://x.com/thedylangibbs" },
       { label: "WEB", handle: "migratemate.co", url: "https://migratemate.co" }
+    ],
+    affiliates: [
+      { name: "Mihailo Bozic", role: "Co-Founder & CEO, MigrateMate", connection: "Co-founder and best friend" },
+      { name: "Edward Kong", role: "Head of Growth, MigrateMate", connection: "Key team member, content creator" },
+      { name: "Wasi Sanim", role: "Lead Backend Engineer, MigrateMate", connection: "Core engineering team" },
+      { name: "Demi Bademosi", role: "Founding UX Designer, MigrateMate", connection: "Founding team member" },
+      { name: "Jordan Saddik", role: "Co-Founder, Envited", connection: "Mihailo's previous startup collaborator" }
     ],
     dialog: "Forbes 30 Under 30. Built a profitable platform from scratch. Australian asset operating internationally."
   },
   {
-    id: 7,
-    name: "Frank",
-    codename: "ANIMALIA",
-    role: "Founder",
-    org: "Vibe Animal",
-    freq: "142.15",
-    initials: "F",
-    threat: "high",
+    id: 7, name: "Frank", codename: "ANIMALIA", role: "Founder", org: "Vibe Animal",
+    freq: "142.15", initials: "F", threat: "high", photoUrl: null,
     bio: "Founder of Vibe Animal, described as a digital app. Currently operating in stealth mode with no public web presence detected for the project.",
     background: "[REDACTED] -- No open-source intelligence available on subject or project. 'Vibe Animal' returns zero results across all indexed databases. Likely pre-launch or intentionally dark.",
     notable: "Full identity unknown. Project in deep stealth. Only first name provided -- classic tradecraft.",
     tags: ["STEALTH", "FOUNDER", "UNKNOWN", "DIGITAL APP"],
-    links: [],
+    links: [], affiliates: [],
     dialog: "First name only. No last name. No digital trail. His app doesn't exist yet... or it's hidden very well."
   },
   {
-    id: 8,
-    name: "Alex Roe",
-    codename: "LENS",
-    role: "Co-Founder & CEO",
-    org: "Summit",
-    freq: "141.52",
-    initials: "AR",
-    threat: "med",
-    bio: "Georgia Tech CS graduate (2010-2014). Was the founding Product Manager for Google Lens, one of Google's most ambitious AI products. Also served as PM at Google Photos Search. Employee #5 at Cresta, an AI unicorn where he helped scale from 10 to 200+ employees through Seed to Series C.",
-    background: "Now Co-Founder & CEO of Summit (summit.im), an AI life coach platform. The most popular AI coach personality on the platform is reportedly a 'drill sergeant.' Transitioned from building AI products at Google to building his own AI company.",
-    notable: "Founding PM of Google Lens; Employee #5 at AI unicorn Cresta; Now CEO of Summit AI coach",
+    id: 8, name: "Alex Roe", codename: "LENS", role: "Co-Founder & CEO", org: "Summit",
+    freq: "141.52", initials: "AR", threat: "med",
+    photoUrl: "https://pbs.twimg.com/profile_images/1748389482980659200/9L36AGJE_400x400.jpg",
+    bio: "Georgia Tech CS graduate (2010-2014). Was the founding Product Manager for Google Lens. Also served as PM at Google Photos Search. Employee #5 at Cresta, an AI unicorn where he helped scale from 10 to 200+ employees through Seed to Series C.",
+    background: "Co-Founder & CEO of Summit (summit.im), an AI life coach platform. Summit was acquired in March 2025. Backed by South Park Commons and Very Serious Ventures. Spent ~10 years in SF before relocating to NYC. Now building in mental health x AI.",
+    notable: "Founding PM of Google Lens; Employee #5 at AI unicorn Cresta ($282M raised); Summit acquired 2025",
     tags: ["EX-GOOGLE", "AI FOUNDER", "CEO", "CRESTA EARLY"],
     links: [
       { label: "TWITTER", handle: "@AlexRoe", url: "https://x.com/AlexRoe" },
       { label: "LINKEDIN", handle: "alex-roe", url: "https://www.linkedin.com/in/alex-roe-3352ab39" },
       { label: "WEB", handle: "summit.im", url: "https://summit.im" }
     ],
+    affiliates: [
+      { name: "Tripp Roberts", role: "Co-Founder, Summit", connection: "Co-founded Summit; ex-Spotify Senior SWE" },
+      { name: "Zayd Enam", role: "Co-Founder & CEO, Cresta", connection: "Alex was employee #5 at Cresta" },
+      { name: "Sebastian Thrun", role: "Co-Founder, Cresta", connection: "Cresta co-founder; also founded Udacity" },
+      { name: "Zach Zayac", role: "Professional contact", connection: "Connected Summit team with drill sergeant for AI coach" },
+      { name: "Nic Baird", role: "Former colleague", connection: "Former Cresta or Google colleague" }
+    ],
     dialog: "He built Google Lens. Employee #5 at an AI unicorn. Now his AI will coach you... or drill sergeant you."
   },
   {
-    id: 9,
-    name: "David Imel",
-    codename: "WAVEFORM",
-    role: "Writer / Producer",
-    org: "MKBHD",
-    freq: "140.15",
-    initials: "DI",
-    threat: "med",
+    id: 9, name: "David Imel", codename: "WAVEFORM", role: "Writer / Producer", org: "MKBHD",
+    freq: "140.15", initials: "DI", threat: "med",
+    photoUrl: "https://www.davidimel.com/content/images/size/w1200/2024/12/Photo-from-Google-Photos-1.jpg",
     bio: "UC Santa Cruz graduate. Former Systems Engineer at Intel (2016). Transitioned from semiconductor engineering to tech media as Senior Reporter at Android Authority (2016-2021). Now a key member of the MKBHD team as writer, researcher, and producer.",
-    background: "Co-hosts the Waveform podcast alongside Marques Brownlee. Based in Brooklyn, NY. Also an avid film photography enthusiast. Tagline: 'Telling stories in every medium.' Maintains presence across major platforms.",
+    background: "Co-hosts the Waveform podcast alongside Marques Brownlee and Andrew Manganelli. Based in Brooklyn, NY. Also an avid film photography enthusiast and Fujilove Magazine contributor. Tagline: 'Telling stories in every medium.'",
     notable: "Core MKBHD team member; Co-host of Waveform podcast; Former Intel engineer turned tech journalist",
     tags: ["MEDIA", "MKBHD", "PODCAST", "EX-INTEL"],
     links: [
@@ -850,60 +640,66 @@ const contacts = [
       { label: "BLUESKY", handle: "@davidimel.com", url: "https://bsky.app/profile/davidimel.com" },
       { label: "WEB", handle: "davidimel.com", url: "https://www.davidimel.com" }
     ],
+    affiliates: [
+      { name: "Marques Brownlee", role: "Founder/CEO, MKBHD Inc.", connection: "Boss; Waveform podcast co-host" },
+      { name: "Andrew Manganelli", role: "Producer, MKBHD", connection: "Waveform podcast co-host" },
+      { name: "Brandon Havard", role: "Creative Director, MKBHD", connection: "Production team colleague" },
+      { name: "Adam Molina", role: "Lead Podcast Strategist, MKBHD", connection: "Waveform production team" },
+      { name: "Vinh Dang", role: "Director of Photography, MKBHD", connection: "Video production colleague" }
+    ],
     dialog: "MKBHD's intel arm. Former chip engineer turned media operative. Co-hosts the Waveform transmission."
   },
   {
-    id: 10,
-    name: "Parker Ortolani",
-    codename: "POLYGON",
-    role: "Consumer Product Manager",
-    org: "Vox Media / The Verge",
-    freq: "141.96",
-    initials: "PO",
-    threat: "med",
+    id: 10, name: "Parker Ortolani", codename: "POLYGON", role: "Assoc. Dir. Product Dev", org: "Penske Media",
+    freq: "141.96", initials: "PO", threat: "med",
+    photoUrl: "https://substack-post-media.s3.amazonaws.com/public/images/fa884ce7-32c1-498e-a1de-b0952533c991_400x400.jpeg",
     bio: "Fordham University graduate (Class of 2020). Started at BuzzFeed as an intern and rose to Brand Licensing and Marketing Manager, overseeing Walmart and Amazon programs. Contributing writer at 9to5Mac covering Apple ecosystem.",
-    background: "Now Consumer Product Manager at Vox Media, working across The Verge, Polygon, and Vox Media Podcast Network. Has worked on 150+ consumer products contributing to approximately $500M in retail sales. Uniquely bridges editorial/writing and product/business roles.",
-    notable: "150+ consumer products (~$500M retail sales); 9to5Mac writer; Bridges editorial and product roles at Vox Media",
-    tags: ["VOX MEDIA", "THE VERGE", "PRODUCT", "APPLE"],
+    background: "Now Associate Director of Product Development at Penske Media Corporation (moved from Vox Media). Has worked on 150+ consumer products contributing to approximately $500M in retail sales. Uniquely bridges editorial/writing and product/business roles.",
+    notable: "150+ consumer products (~$500M retail sales); 9to5Mac writer; Now at Penske Media Corp",
+    tags: ["PENSKE MEDIA", "THE VERGE", "PRODUCT", "APPLE"],
     links: [
       { label: "TWITTER", handle: "@ParkerOrtolani", url: "https://x.com/ParkerOrtolani" },
       { label: "LINKEDIN", handle: "parkerortolani", url: "https://www.linkedin.com/in/parkerortolani" },
       { label: "WEB", handle: "parkerortolani.com", url: "https://www.parkerortolani.com" }
     ],
-    dialog: "Vox Media product operative. Half a billion in retail sales under his watch. Also writes Apple intel for 9to5Mac."
+    affiliates: [
+      { name: "Nilay Patel", role: "Editor-in-Chief, The Verge", connection: "Former Vox Media leadership" },
+      { name: "Helen Havlak", role: "Publisher, The Verge", connection: "Former Vox Media colleague" },
+      { name: "Chance Miller", role: "Writer, 9to5Mac", connection: "9to5Mac colleague" },
+      { name: "Zac Hall", role: "Writer/Editor, 9to5Mac", connection: "9to5Mac colleague" },
+      { name: "Jonah Peretti", role: "Founder & CEO, BuzzFeed", connection: "Former BuzzFeed leadership" }
+    ],
+    dialog: "Penske Media product operative. Half a billion in retail sales under his watch. Also writes Apple intel for 9to5Mac."
   },
   {
-    id: 11,
-    name: "Hayden Field",
-    codename: "DEEPCOVER",
-    role: "Senior AI Reporter",
-    org: "The Verge",
-    freq: "142.80",
-    initials: "HF",
-    threat: "high",
+    id: 11, name: "Hayden Field", codename: "DEEPCOVER", role: "Senior AI Reporter", org: "The Verge",
+    freq: "142.80", initials: "HF", threat: "high",
+    photoUrl: "https://www.entrepreneur.com/wp-content/uploads/sites/2/2025/04/20180403160629-HaydenFieldHeadshot.png",
     bio: "Full name Hayden Elizabeth Field. University of Georgia graduate with dual degrees in Journalism and Theatre. Approximately 5 years covering the AI beat across major publications. National Press Foundation AI reporting fellow.",
-    background: "Career trajectory: Entrepreneur Magazine, Politico's Protocol, Morning Brew, CNBC (AI beat reporter for 2 years), now Senior AI Reporter at The Verge. Work featured in MIT Technology Review and WIRED UK. Covers OpenAI, Anthropic, Google, Meta, Apple and the broader AI landscape.",
-    notable: "One of the most prominent AI beat reporters in tech media; Covers all major AI labs including Anthropic; NPF AI Fellow; Dual degree in Journalism AND Theatre",
+    background: "Career trajectory: Entrepreneur Magazine, Politico's Protocol, Morning Brew (Tech Brew), CNBC (AI beat reporter for 2 years), now Senior AI Reporter at The Verge. Work featured in MIT Technology Review and WIRED UK. Covers OpenAI, Anthropic, Google, Meta, Apple and the broader AI landscape.",
+    notable: "One of the most prominent AI beat reporters in tech media; Covers all major AI labs including Anthropic; NPF AI Fellow",
     tags: ["AI PRESS", "THE VERGE", "EX-CNBC", "ANTHROPIC COVERAGE"],
     links: [
       { label: "TWITTER", handle: "@haydenfield", url: "https://x.com/haydenfield" },
       { label: "BLUESKY", handle: "@haydenfield.bsky.social", url: "https://bsky.app/profile/haydenfield.bsky.social" },
       { label: "WEB", handle: "haydenelizabethfield.com", url: "https://www.haydenelizabethfield.com" }
     ],
+    affiliates: [
+      { name: "Nilay Patel", role: "Editor-in-Chief, The Verge", connection: "Hired Hayden; appears on Decoder podcast" },
+      { name: "David Pierce", role: "Reporter, The Verge", connection: "Vergecast co-appearances on AI topics" },
+      { name: "Richard Lawler", role: "Reporter/Editor, The Verge", connection: "Co-authored Anthropic/Pentagon coverage" },
+      { name: "Emilia David", role: "AI Reporter, The Verge", connection: "Fellow AI beat reporter" },
+      { name: "Meredith Klein", role: "Media journalist", connection: "Interviewed Hayden at Haymaker Media Summit" }
+    ],
     dialog: "Senior AI reporter at The Verge. She covers Anthropic, OpenAI, all of them. Watch what you say around her."
   },
   {
-    id: 12,
-    name: "Viola Zhou",
-    codename: "EASTWIND",
-    role: "Senior Reporter",
-    org: "Rest of World",
-    freq: "141.05",
-    initials: "VZ",
-    threat: "high",
-    bio: "Senior Reporter at Rest of World covering China and the global tech landscape. Over a decade of experience reporting on Chinese tech, business, and internet culture. Previously covered Chinese politics and society for Vice World News, and reported from Hong Kong for the South China Morning Post.",
-    background: "National Press Foundation fellow. Winner of multiple SABEW and SOPA Awards for reporting on Foxconn in India and Chinese pop culture. Based in NYC. Her stories illuminate the relationships between politics, technology, and people -- from assembly line workers powering global manufacturing to how AI reshapes human interaction.",
-    notable: "Award-winning China tech reporter (SABEW, SOPA); 10+ years covering Chinese tech; Ex-SCMP Hong Kong, Ex-Vice World News; NPF Fellow",
+    id: 12, name: "Viola Zhou", codename: "EASTWIND", role: "Senior Reporter", org: "Rest of World",
+    freq: "141.05", initials: "VZ", threat: "high",
+    photoUrl: "https://fastly.restofworld.org/uploads/2024/06/Viola-BlogPost.jpg?width=800&dpr=2&crop=16:9",
+    bio: "Senior Reporter at Rest of World covering China and the global tech landscape. Over a decade of experience reporting on Chinese tech, business, and internet culture. Speaks English, Mandarin, and Cantonese. Previously covered Chinese politics and society for Vice World News, and reported from Hong Kong for the South China Morning Post.",
+    background: "National Press Foundation fellow. Winner of multiple SABEW and SOPA Awards for reporting on Foxconn in India and Chinese pop culture. Based in NYC. Work republished by The Guardian and adapted into an NPR Planet Money episode.",
+    notable: "Award-winning China tech reporter (SABEW, SOPA); 10+ years covering Chinese tech; NPR Planet Money adaptation; Ex-SCMP, Ex-Vice",
     tags: ["CHINA DESK", "REST OF WORLD", "AWARD-WINNING", "GLOBAL TECH"],
     links: [
       { label: "TWITTER", handle: "@violazhoujourno", url: "https://x.com/violazhoujourno" },
@@ -911,62 +707,52 @@ const contacts = [
       { label: "WEB", handle: "restofworld.org", url: "https://restofworld.org/author/viola-zhou/" },
       { label: "PORTFOLIO", handle: "violazhou.com", url: "https://www.violazhou.com" }
     ],
+    affiliates: [
+      { name: "Joanna Chiu", role: "China Editor, Rest of World", connection: "Direct editorial collaborator" },
+      { name: "Kinling Lo", role: "China Reporter, Rest of World", connection: "Fellow China desk reporter" },
+      { name: "Anup Kaphle", role: "Editor-in-Chief, Rest of World", connection: "Top editor overseeing her coverage" },
+      { name: "Sophie Schmidt", role: "Founder & Publisher, Rest of World", connection: "Founded the publication" },
+      { name: "Meaghan Tobin", role: "Reporter (now SCMP)", connection: "Co-bylined stories at Rest of World" }
+    ],
     dialog: "China tech specialist. Award-winning. Decade of deep cover in Chinese tech and politics. Handle with care."
   }
 ];
 
 // ===== BOOT SEQUENCE =====
 const bootLines = [
-  "CODEC SYSTEM v2.71 INITIALIZING...",
-  "",
+  "CODEC SYSTEM v2.71 INITIALIZING...", "",
   "> Loading encrypted channel protocols.......... OK",
   "> Establishing secure uplink................... OK",
   "> Decrypting asset database.................... OK",
   "> Loading CLAWCON NYC field reports............ OK",
   "> Cross-referencing OSINT databases............ OK",
-  "> 12 contacts identified and catalogued",
-  "",
+  "> 12 contacts identified and catalogued", "",
   "> Frequency range: 140.15 - 142.80 MHz",
   "> Encryption: AES-256 / CODEC STANDARD",
-  "> Classification: TOP SECRET // CLAWCON",
-  "",
-  "SYSTEM READY.",
-  "",
+  "> Classification: TOP SECRET // CLAWCON", "",
+  "SYSTEM READY.", "",
   "\"Kept you waiting, huh?\"",
 ];
 
 async function runBoot() {
   const bootText = document.getElementById('boot-text');
   const bootScreen = document.getElementById('boot-screen');
-
   for (let i = 0; i < bootLines.length; i++) {
     const line = bootLines[i];
     const lineEl = document.createElement('div');
     bootText.appendChild(lineEl);
-
-    if (line === "") {
-      lineEl.innerHTML = "&nbsp;";
-      await sleep(100);
-      continue;
-    }
-
-    for (let j = 0; j < line.length; j++) {
-      lineEl.textContent = line.substring(0, j + 1);
-      await sleep(8);
-    }
+    if (line === "") { lineEl.innerHTML = "&nbsp;"; await sleep(100); continue; }
+    for (let j = 0; j < line.length; j++) { lineEl.textContent = line.substring(0, j + 1); await sleep(8); }
     await sleep(150);
   }
-
   await sleep(1200);
   bootScreen.classList.add('hidden');
   document.getElementById('app').classList.add('active');
-
   setTimeout(() => { bootScreen.remove(); }, 1000);
 }
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-// ===== RENDER CONTACTS =====
 function renderContacts() {
   const list = document.getElementById('contact-list');
   contacts.forEach(c => {
@@ -983,34 +769,21 @@ function renderContacts() {
   });
 }
 
-// ===== SELECT CONTACT =====
 async function selectContact(c) {
-  // Update active state
   document.querySelectorAll('.contact-item').forEach(el => el.classList.remove('active'));
   document.querySelector(`.contact-item[data-id="${c.id}"]`).classList.add('active');
-
-  // Hide welcome, show dossier
   document.getElementById('welcome-screen').style.display = 'none';
   const dossierView = document.getElementById('dossier-view');
   dossierView.style.display = 'flex';
-
-  // Codec ring effect
   const frame = document.getElementById('codec-frame');
   frame.classList.add('codec-calling');
   setTimeout(() => frame.classList.remove('codec-calling'), 900);
-
-  // Update portraits
   document.getElementById('portrait-left').textContent = c.initials;
   document.getElementById('freq-display').textContent = c.freq;
   document.getElementById('top-freq').textContent = c.freq;
 
-  // Update dossier content
   const dossierContent = document.getElementById('dossier-content');
-
-  const linksHtml = c.links.map(link => {
-    return `<a href="${link.url}" target="_blank" rel="noopener" class="tag link-tag">${link.label}: ${link.handle}</a>`;
-  }).join(' ');
-
+  const linksHtml = c.links.map(link => `<a href="${link.url}" target="_blank" rel="noopener" class="tag link-tag">${link.label}: ${link.handle}</a>`).join(' ');
   const tagsHtml = c.tags.map(t => {
     const cls = t.includes('OPSEC') || t.includes('UNKNOWN') || t.includes('DARK') || t.includes('STEALTH') ? 'red' :
                 t.includes('AI') || t.includes('FOUNDER') || t.includes('MEDIA') ? 'amber' : '';
@@ -1044,59 +817,119 @@ async function selectContact(c) {
       <div class="dossier-label">FIELD TAGS</div>
       <div style="padding-left:12px;">${tagsHtml}</div>
     </div>
-    ${linksHtml ? `<div class="dossier-section">
-      <div class="dossier-label">SIGNAL INTERCEPTS</div>
-      <div style="padding-left:12px;">${linksHtml}</div>
-    </div>` : ''}
+    ${linksHtml ? `<div class="dossier-section"><div class="dossier-label">SIGNAL INTERCEPTS</div><div style="padding-left:12px;">${linksHtml}</div></div>` : ''}
+    <div style="text-align:center;">
+      <button class="deep-btn" onclick="openDeepDossier(${c.id})">[ DEEP DOSSIER ]</button>
+    </div>
   `;
 
-  // Update right panel
   const intelLinks = document.getElementById('intel-links');
   const intelLinksContent = document.getElementById('intel-links-content');
   const intelTags = document.getElementById('intel-tags');
   const intelTagsContent = document.getElementById('intel-tags-content');
-
   if (c.links.length > 0) {
     intelLinks.style.display = 'block';
     intelLinksContent.innerHTML = c.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener">${l.label}: ${l.handle}</a>`).join('<br>');
-  } else {
-    intelLinks.style.display = 'none';
-  }
-
+  } else { intelLinks.style.display = 'none'; }
   intelTags.style.display = 'block';
   intelTagsContent.innerHTML = c.tags.join('<br>');
 
-  // Typewriter dialog
   const dialogText = document.getElementById('dialog-text');
   const dialogSpeaker = document.getElementById('dialog-speaker');
   dialogSpeaker.textContent = c.codename;
   dialogText.innerHTML = '';
-
-  for (let i = 0; i < c.dialog.length; i++) {
-    dialogText.textContent = c.dialog.substring(0, i + 1);
-    await sleep(18);
-  }
+  for (let i = 0; i < c.dialog.length; i++) { dialogText.textContent = c.dialog.substring(0, i + 1); await sleep(18); }
   dialogText.innerHTML += '<span class="typing-cursor">_</span>';
 }
 
-// ===== KEYBOARD NAV =====
-document.addEventListener('keydown', (e) => {
-  const currentIdx = contacts.findIndex(c =>
-    document.querySelector(`.contact-item.active`)?.dataset.id == c.id
-  );
+// ===== DEEP DOSSIER =====
+function openDeepDossier(id) {
+  const c = contacts.find(x => x.id === id);
+  if (!c) return;
 
-  if (e.key === 'ArrowDown' || e.key === 'j') {
-    e.preventDefault();
-    const next = currentIdx < contacts.length - 1 ? currentIdx + 1 : 0;
-    selectContact(contacts[next]);
-  } else if (e.key === 'ArrowUp' || e.key === 'k') {
-    e.preventDefault();
-    const prev = currentIdx > 0 ? currentIdx - 1 : contacts.length - 1;
-    selectContact(contacts[prev]);
+  const overlay = document.getElementById('deep-modal-overlay');
+  const photoContainer = document.getElementById('deep-photo');
+  const photoImg = document.getElementById('deep-photo-img');
+  const noPhoto = document.getElementById('deep-no-photo');
+
+  document.getElementById('deep-name').textContent = c.name;
+  document.getElementById('deep-codename').textContent = `CODENAME: ${c.codename} // FREQ ${c.freq}`;
+  document.getElementById('deep-role').innerHTML = `${c.role} // ${c.org}<br>THREAT LEVEL: <span style="color:${c.threat === 'high' ? 'var(--red)' : c.threat === 'med' ? 'var(--amber)' : 'var(--green)'}">${c.threat.toUpperCase()}</span>`;
+
+  // Photo
+  photoContainer.classList.remove('loaded');
+  if (c.photoUrl) {
+    photoImg.src = c.photoUrl;
+    photoImg.onload = () => { photoContainer.classList.add('loaded'); };
+    photoImg.onerror = () => { photoContainer.classList.remove('loaded'); noPhoto.textContent = c.initials; };
+    noPhoto.textContent = '';
+  } else {
+    photoImg.src = '';
+    noPhoto.textContent = c.initials;
   }
+
+  // Body
+  const body = document.getElementById('deep-body');
+  const linksHtml = c.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener" class="tag link-tag">${l.label}: ${l.handle}</a>`).join(' ');
+
+  let affiliatesHtml = '';
+  if (c.affiliates.length > 0) {
+    affiliatesHtml = `
+      <div class="dossier-section">
+        <div class="dossier-label">KNOWN AFFILIATES // TOP ${c.affiliates.length}</div>
+        <div class="affiliate-grid">
+          ${c.affiliates.map(a => `
+            <div class="affiliate-card">
+              <div class="af-name">${a.name}</div>
+              <div class="af-role">${a.role}</div>
+              <div class="af-conn">${a.connection}</div>
+            </div>
+          `).join('')}
+        </div>
+      </div>
+    `;
+  } else {
+    affiliatesHtml = `<div class="deep-classified">NO KNOWN AFFILIATES<br>[ CLASSIFIED ]</div>`;
+  }
+
+  body.innerHTML = `
+    <div class="dossier-section">
+      <div class="dossier-label">FULL INTELLIGENCE BRIEF</div>
+      <div class="dossier-value">${c.bio}</div>
+    </div>
+    <div class="dossier-section">
+      <div class="dossier-label">DEEP BACKGROUND</div>
+      <div class="dossier-value ${c.background.includes('[REDACTED]') ? 'classified' : ''}">${c.background}</div>
+    </div>
+    <div class="dossier-section">
+      <div class="dossier-label">NOTABLE OPERATIONS</div>
+      <div class="dossier-value">${c.notable}</div>
+    </div>
+    ${affiliatesHtml}
+    ${linksHtml ? `<div class="dossier-section"><div class="dossier-label">SIGNAL INTERCEPTS</div><div style="padding-left:12px;">${linksHtml}</div></div>` : ''}
+  `;
+
+  overlay.classList.add('active');
+}
+
+document.getElementById('deep-close').addEventListener('click', () => {
+  document.getElementById('deep-modal-overlay').classList.remove('active');
+});
+document.getElementById('deep-modal-overlay').addEventListener('click', (e) => {
+  if (e.target === e.currentTarget) e.currentTarget.classList.remove('active');
 });
 
-// ===== INIT =====
+// ===== KEYBOARD NAV =====
+document.addEventListener('keydown', (e) => {
+  if (document.getElementById('deep-modal-overlay').classList.contains('active')) {
+    if (e.key === 'Escape') document.getElementById('deep-modal-overlay').classList.remove('active');
+    return;
+  }
+  const currentIdx = contacts.findIndex(c => document.querySelector(`.contact-item.active`)?.dataset.id == c.id);
+  if (e.key === 'ArrowDown' || e.key === 'j') { e.preventDefault(); selectContact(contacts[currentIdx < contacts.length - 1 ? currentIdx + 1 : 0]); }
+  else if (e.key === 'ArrowUp' || e.key === 'k') { e.preventDefault(); selectContact(contacts[currentIdx > 0 ? currentIdx - 1 : contacts.length - 1]); }
+});
+
 renderContacts();
 runBoot();
 </script>
