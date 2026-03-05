@@ -359,6 +359,17 @@
   }
   .tag.amber { color: var(--amber); border-color: #5a3a1a; background: #1a1a0a; }
   .tag.red { color: var(--red); border-color: #5a1a1a; background: #1a0a0a; }
+  a.link-tag {
+    text-decoration: none;
+    color: var(--amber);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  a.link-tag:hover {
+    background: #2a2a0a;
+    border-color: var(--amber);
+    text-shadow: 0 0 8px rgba(255,170,0,0.4);
+  }
 
   /* DIALOG BOX */
   .dialog-box {
@@ -551,7 +562,7 @@
   <div class="content">
     <!-- LEFT: CONTACTS -->
     <div class="left-panel">
-      <div class="panel-header">FIELD CONTACTS // 11 ASSETS</div>
+      <div class="panel-header">FIELD CONTACTS // 12 ASSETS</div>
       <div class="contact-list" id="contact-list"></div>
     </div>
 
@@ -642,7 +653,7 @@
       </div>
       <div class="intel-section">
         <div class="intel-label">ASSETS LOGGED</div>
-        <div class="intel-value">11 CONTACTS</div>
+        <div class="intel-value">12 CONTACTS</div>
       </div>
       <div class="intel-section">
         <div class="intel-label">CHANNEL STATUS</div>
@@ -669,6 +680,7 @@
 
 <script>
 // ===== CONTACT DATA =====
+// Links now use {label, url} for clickable hrefs
 const contacts = [
   {
     id: 1,
@@ -683,7 +695,11 @@ const contacts = [
     background: "Prior experience at Snaps and Delmondo in the social media intelligence space. Known for bridging consumer product intuition with enterprise AI applications.",
     notable: "Former Snapchat PM; Founded Zolenda; Now at AI-powered Mutiny platform",
     tags: ["PRODUCT", "AI/ML", "EX-SNAPCHAT"],
-    links: { twitter: "@austintierney", linkedin: "austintierney", web: "austintierney.com" },
+    links: [
+      { label: "TWITTER", handle: "@austintierney", url: "https://x.com/austintierney" },
+      { label: "LINKEDIN", handle: "austintierney", url: "https://www.linkedin.com/in/austintierney" },
+      { label: "WEB", handle: "austintierney.com", url: "https://austintierney.com" }
+    ],
     dialog: "Product Manager at Mutiny. Former Snapchat operative. Knows how to turn AI into revenue."
   },
   {
@@ -699,7 +715,10 @@ const contacts = [
     background: "Produced Chili's highest-performing organic content ever with 15M+ views. Shot and edited Sonic content achieving 50M+ views across platforms. Has worked with HBO, Adobe, Warner Records, and Arizona Iced Tea. Collaborates with music artists including bbno$, Audrey Nuna, and Dev Lemons.",
     notable: "15M+ views on single Chili's campaign; 50M+ views Sonic content; Also indie pop musician and comedian; 24K+ TikTok followers",
     tags: ["CONTENT", "VIRAL OPS", "MUSICIAN", "COMEDY"],
-    links: { linkedin: "cole-magnacca", web: "colemagnacca.com" },
+    links: [
+      { label: "LINKEDIN", handle: "cole-magnacca", url: "https://www.linkedin.com/in/cole-magnacca" },
+      { label: "WEB", handle: "colemagnacca.com", url: "https://colemagnacca.com" }
+    ],
     dialog: "Creative operative. Weaponizes content for maximum viral impact. Also moonlights as a musician."
   },
   {
@@ -715,7 +734,11 @@ const contacts = [
     background: "Founded Herd, a smart contract visualizer tool. Deep expertise in on-chain data analysis and blockchain infrastructure. Runs the Crypto Data Bytes Substack, educating others on web3 analytics.",
     notable: "Headmaster at Dune Analytics; Founded Herd (smart contract visualizer); Former ConsenSys",
     tags: ["WEB3", "DATA", "BLOCKCHAIN", "EDUCATION"],
-    links: { twitter: "@andrewhong5297", github: "andrewhong5297", web: "Crypto Data Bytes (Substack)" },
+    links: [
+      { label: "TWITTER", handle: "@andrewhong5297", url: "https://x.com/andrewhong5297" },
+      { label: "GITHUB", handle: "andrewhong5297", url: "https://github.com/andrewhong5297" },
+      { label: "SUBSTACK", handle: "Crypto Data Bytes", url: "https://substack.com/@andrewhong5297" }
+    ],
     dialog: "Blockchain data specialist. If it happened on-chain, he already knows about it."
   },
   {
@@ -731,7 +754,7 @@ const contacts = [
     background: "[REDACTED] -- No open-source intelligence available. Subject maintains exceptional operational security. Name spelling may be an alias or variant.",
     notable: "ZERO digital footprint detected. Either running dark or using an alias. Highest OPSEC rating in this dossier.",
     tags: ["CRYPTO", "ENGINEER", "OPSEC", "DARK"],
-    links: {},
+    links: [],
     dialog: "A ghost. Zero digital footprint. Either extremely careful... or extremely dangerous."
   },
   {
@@ -744,10 +767,13 @@ const contacts = [
     initials: "JC",
     threat: "low",
     bio: "Full name Jun C. Tan. University of Michigan alumnus. Serial entrepreneur who previously founded Intros AI, an AI-powered community introductions platform that facilitated over 1 million connections across 1,000+ communities before being acquired by Bevy.",
-    background: "Built and sold Intros AI after 5 years of development. Now leading engineering at TradePulse Solutions LLC and developing projects under Horizon Analytics Labs (flur.horizonanalyticslabs.com). Technical founder with deep community-tech expertise.",
+    background: "Built and sold Intros AI after 5 years of development. Now leading engineering at TradePulse Solutions LLC and developing projects under Horizon Analytics Labs. Technical founder with deep community-tech expertise.",
     notable: "Founded & sold Intros AI to Bevy (1M+ connections facilitated); UMich alumnus; Now at Horizon Analytics Labs",
     tags: ["FOUNDER", "AI", "ACQUIRED", "COMMUNITY-TECH"],
-    links: { linkedin: "jun-c-tan", web: "flur.horizonanalyticslabs.com" },
+    links: [
+      { label: "LINKEDIN", handle: "jun-c-tan", url: "https://www.linkedin.com/in/jun-c-tan" },
+      { label: "WEB", handle: "horizonanalyticslabs.com", url: "https://flur.horizonanalyticslabs.com" }
+    ],
     dialog: "The Matchmaker. Built an AI that connected a million people, then sold it. Now analyzing horizons."
   },
   {
@@ -763,7 +789,11 @@ const contacts = [
     background: "Forbes 30 Under 30 (2025). Platform hit 1,000 paid users in just 13 weeks, then scaled 10x in 4 months. Company is already profitable. Vision to help a billion people navigate immigration and relocation.",
     notable: "Forbes 30 Under 30; Profitable in record time; Built entire platform solo as CTO",
     tags: ["FOUNDER", "FORBES 30U30", "IMMIGRATION-TECH", "PROFITABLE"],
-    links: { linkedin: "dylan-gibbs", twitter: "@thedylangibbs", web: "migratemate.co" },
+    links: [
+      { label: "LINKEDIN", handle: "dylan-gibbs", url: "https://www.linkedin.com/in/dylan-gibbs" },
+      { label: "TWITTER", handle: "@thedylangibbs", url: "https://x.com/thedylangibbs" },
+      { label: "WEB", handle: "migratemate.co", url: "https://migratemate.co" }
+    ],
     dialog: "Forbes 30 Under 30. Built a profitable platform from scratch. Australian asset operating internationally."
   },
   {
@@ -779,7 +809,7 @@ const contacts = [
     background: "[REDACTED] -- No open-source intelligence available on subject or project. 'Vibe Animal' returns zero results across all indexed databases. Likely pre-launch or intentionally dark.",
     notable: "Full identity unknown. Project in deep stealth. Only first name provided -- classic tradecraft.",
     tags: ["STEALTH", "FOUNDER", "UNKNOWN", "DIGITAL APP"],
-    links: {},
+    links: [],
     dialog: "First name only. No last name. No digital trail. His app doesn't exist yet... or it's hidden very well."
   },
   {
@@ -795,7 +825,11 @@ const contacts = [
     background: "Now Co-Founder & CEO of Summit (summit.im), an AI life coach platform. The most popular AI coach personality on the platform is reportedly a 'drill sergeant.' Transitioned from building AI products at Google to building his own AI company.",
     notable: "Founding PM of Google Lens; Employee #5 at AI unicorn Cresta; Now CEO of Summit AI coach",
     tags: ["EX-GOOGLE", "AI FOUNDER", "CEO", "CRESTA EARLY"],
-    links: { twitter: "@AlexRoe", linkedin: "alex-roe-3352ab39", web: "summit.im" },
+    links: [
+      { label: "TWITTER", handle: "@AlexRoe", url: "https://x.com/AlexRoe" },
+      { label: "LINKEDIN", handle: "alex-roe", url: "https://www.linkedin.com/in/alex-roe-3352ab39" },
+      { label: "WEB", handle: "summit.im", url: "https://summit.im" }
+    ],
     dialog: "He built Google Lens. Employee #5 at an AI unicorn. Now his AI will coach you... or drill sergeant you."
   },
   {
@@ -811,7 +845,11 @@ const contacts = [
     background: "Co-hosts the Waveform podcast alongside Marques Brownlee. Based in Brooklyn, NY. Also an avid film photography enthusiast. Tagline: 'Telling stories in every medium.' Maintains presence across major platforms.",
     notable: "Core MKBHD team member; Co-host of Waveform podcast; Former Intel engineer turned tech journalist",
     tags: ["MEDIA", "MKBHD", "PODCAST", "EX-INTEL"],
-    links: { twitter: "@DurvidImel", web: "davidimel.com", bluesky: "@davidimel.com" },
+    links: [
+      { label: "TWITTER", handle: "@DurvidImel", url: "https://twitter.com/DurvidImel" },
+      { label: "BLUESKY", handle: "@davidimel.com", url: "https://bsky.app/profile/davidimel.com" },
+      { label: "WEB", handle: "davidimel.com", url: "https://www.davidimel.com" }
+    ],
     dialog: "MKBHD's intel arm. Former chip engineer turned media operative. Co-hosts the Waveform transmission."
   },
   {
@@ -827,7 +865,11 @@ const contacts = [
     background: "Now Consumer Product Manager at Vox Media, working across The Verge, Polygon, and Vox Media Podcast Network. Has worked on 150+ consumer products contributing to approximately $500M in retail sales. Uniquely bridges editorial/writing and product/business roles.",
     notable: "150+ consumer products (~$500M retail sales); 9to5Mac writer; Bridges editorial and product roles at Vox Media",
     tags: ["VOX MEDIA", "THE VERGE", "PRODUCT", "APPLE"],
-    links: { twitter: "@ParkerOrtolani", linkedin: "parkerortolani", web: "parkerortolani.com" },
+    links: [
+      { label: "TWITTER", handle: "@ParkerOrtolani", url: "https://x.com/ParkerOrtolani" },
+      { label: "LINKEDIN", handle: "parkerortolani", url: "https://www.linkedin.com/in/parkerortolani" },
+      { label: "WEB", handle: "parkerortolani.com", url: "https://www.parkerortolani.com" }
+    ],
     dialog: "Vox Media product operative. Half a billion in retail sales under his watch. Also writes Apple intel for 9to5Mac."
   },
   {
@@ -843,8 +885,33 @@ const contacts = [
     background: "Career trajectory: Entrepreneur Magazine, Politico's Protocol, Morning Brew, CNBC (AI beat reporter for 2 years), now Senior AI Reporter at The Verge. Work featured in MIT Technology Review and WIRED UK. Covers OpenAI, Anthropic, Google, Meta, Apple and the broader AI landscape.",
     notable: "One of the most prominent AI beat reporters in tech media; Covers all major AI labs including Anthropic; NPF AI Fellow; Dual degree in Journalism AND Theatre",
     tags: ["AI PRESS", "THE VERGE", "EX-CNBC", "ANTHROPIC COVERAGE"],
-    links: { twitter: "@haydenfield", bluesky: "@haydenfield.bsky.social", web: "haydenelizabethfield.com" },
+    links: [
+      { label: "TWITTER", handle: "@haydenfield", url: "https://x.com/haydenfield" },
+      { label: "BLUESKY", handle: "@haydenfield.bsky.social", url: "https://bsky.app/profile/haydenfield.bsky.social" },
+      { label: "WEB", handle: "haydenelizabethfield.com", url: "https://www.haydenelizabethfield.com" }
+    ],
     dialog: "Senior AI reporter at The Verge. She covers Anthropic, OpenAI, all of them. Watch what you say around her."
+  },
+  {
+    id: 12,
+    name: "Viola Zhou",
+    codename: "EASTWIND",
+    role: "Senior Reporter",
+    org: "Rest of World",
+    freq: "141.05",
+    initials: "VZ",
+    threat: "high",
+    bio: "Senior Reporter at Rest of World covering China and the global tech landscape. Over a decade of experience reporting on Chinese tech, business, and internet culture. Previously covered Chinese politics and society for Vice World News, and reported from Hong Kong for the South China Morning Post.",
+    background: "National Press Foundation fellow. Winner of multiple SABEW and SOPA Awards for reporting on Foxconn in India and Chinese pop culture. Based in NYC. Her stories illuminate the relationships between politics, technology, and people -- from assembly line workers powering global manufacturing to how AI reshapes human interaction.",
+    notable: "Award-winning China tech reporter (SABEW, SOPA); 10+ years covering Chinese tech; Ex-SCMP Hong Kong, Ex-Vice World News; NPF Fellow",
+    tags: ["CHINA DESK", "REST OF WORLD", "AWARD-WINNING", "GLOBAL TECH"],
+    links: [
+      { label: "TWITTER", handle: "@violazhoujourno", url: "https://x.com/violazhoujourno" },
+      { label: "BLUESKY", handle: "@violazhou.bsky.social", url: "https://bsky.app/profile/violazhou.bsky.social" },
+      { label: "WEB", handle: "restofworld.org", url: "https://restofworld.org/author/viola-zhou/" },
+      { label: "PORTFOLIO", handle: "violazhou.com", url: "https://www.violazhou.com" }
+    ],
+    dialog: "China tech specialist. Award-winning. Decade of deep cover in Chinese tech and politics. Handle with care."
   }
 ];
 
@@ -857,7 +924,7 @@ const bootLines = [
   "> Decrypting asset database.................... OK",
   "> Loading CLAWCON NYC field reports............ OK",
   "> Cross-referencing OSINT databases............ OK",
-  "> 11 contacts identified and catalogued",
+  "> 12 contacts identified and catalogued",
   "",
   "> Frequency range: 140.15 - 142.80 MHz",
   "> Encryption: AES-256 / CODEC STANDARD",
@@ -940,8 +1007,8 @@ async function selectContact(c) {
   // Update dossier content
   const dossierContent = document.getElementById('dossier-content');
 
-  const linksHtml = Object.entries(c.links).map(([platform, handle]) => {
-    return `<span class="tag">${platform.toUpperCase()}: ${handle}</span>`;
+  const linksHtml = c.links.map(link => {
+    return `<a href="${link.url}" target="_blank" rel="noopener" class="tag link-tag">${link.label}: ${link.handle}</a>`;
   }).join(' ');
 
   const tagsHtml = c.tags.map(t => {
@@ -989,9 +1056,9 @@ async function selectContact(c) {
   const intelTags = document.getElementById('intel-tags');
   const intelTagsContent = document.getElementById('intel-tags-content');
 
-  if (Object.keys(c.links).length > 0) {
+  if (c.links.length > 0) {
     intelLinks.style.display = 'block';
-    intelLinksContent.innerHTML = Object.entries(c.links).map(([k,v]) => `${k}: ${v}`).join('<br>');
+    intelLinksContent.innerHTML = c.links.map(l => `<a href="${l.url}" target="_blank" rel="noopener">${l.label}: ${l.handle}</a>`).join('<br>');
   } else {
     intelLinks.style.display = 'none';
   }
