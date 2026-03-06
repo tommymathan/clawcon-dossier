@@ -1060,11 +1060,20 @@ async function runBoot() {
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 // ===== PASSWORD AUTH =====
-document.getElementById('pw-input').addEventListener('keydown', function(e) {
+const PW_HASH = '53875173e8832454c4a765b5735f1710ffa4b5191aceaab8d762f312d8261db4';
+
+async function hashPassword(pw) {
+  const data = new TextEncoder().encode(pw);
+  const buf = await crypto.subtle.digest('SHA-256', data);
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+document.getElementById('pw-input').addEventListener('keydown', async function(e) {
   if (e.key === 'Enter') {
     const input = this;
     const errorMsg = document.getElementById('pw-error');
-    if (input.value.toLowerCase() === 'digitalgod') {
+    const inputHash = await hashPassword(input.value.toLowerCase());
+    if (inputHash === PW_HASH) {
       errorMsg.textContent = '> ACCESS GRANTED';
       errorMsg.style.color = 'var(--green)';
       input.style.borderColor = 'var(--green)';
