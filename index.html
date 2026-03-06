@@ -72,6 +72,102 @@
   }
   @keyframes blink { 50% { opacity: 0; } }
 
+  /* PASSWORD SCREEN */
+  #password-screen {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--bg);
+    z-index: 10000;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.8s;
+  }
+  #password-screen.active { display: flex; }
+  #password-screen.hidden { opacity: 0; pointer-events: none; }
+  .pw-container {
+    text-align: center;
+    width: 400px;
+  }
+  .pw-lock {
+    font-family: 'VT323', monospace;
+    font-size: 64px;
+    color: var(--red);
+    margin-bottom: 16px;
+    text-shadow: 0 0 20px rgba(255,51,51,0.4);
+    animation: pulse 2s infinite;
+  }
+  .pw-title {
+    font-family: 'VT323', monospace;
+    font-size: 24px;
+    color: var(--green);
+    letter-spacing: 6px;
+    margin-bottom: 8px;
+    text-shadow: 0 0 10px var(--green-glow);
+  }
+  .pw-subtitle {
+    font-size: 11px;
+    color: var(--text-dim);
+    letter-spacing: 3px;
+    margin-bottom: 32px;
+  }
+  .pw-input-wrap {
+    position: relative;
+    margin-bottom: 16px;
+  }
+  .pw-input-wrap label {
+    display: block;
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 3px;
+    margin-bottom: 8px;
+    text-align: left;
+  }
+  #pw-input {
+    width: 100%;
+    padding: 12px 16px;
+    background: #050a05;
+    border: 1px solid var(--border);
+    color: var(--green);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 18px;
+    letter-spacing: 4px;
+    outline: none;
+    caret-color: var(--green);
+  }
+  #pw-input:focus {
+    border-color: var(--green);
+    box-shadow: 0 0 10px rgba(0,255,68,0.15);
+  }
+  #pw-input.pw-error {
+    border-color: var(--red);
+    box-shadow: 0 0 10px rgba(255,51,51,0.2);
+    animation: shake 0.3s linear;
+  }
+  @keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-6px); }
+    40% { transform: translateX(6px); }
+    60% { transform: translateX(-4px); }
+    80% { transform: translateX(4px); }
+  }
+  .pw-error-msg {
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    color: var(--red);
+    letter-spacing: 2px;
+    height: 20px;
+    margin-top: 8px;
+  }
+  .pw-hint {
+    font-size: 10px;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+    margin-top: 24px;
+    opacity: 0.5;
+  }
+
   #app { display: none; height: 100vh; width: 100vw; flex-direction: column; }
   #app.active { display: flex; }
 
@@ -398,6 +494,20 @@
 
 <div id="boot-screen">
   <div id="boot-text"></div>
+</div>
+
+<div id="password-screen">
+  <div class="pw-container">
+    <div class="pw-lock">&#9632;</div>
+    <div class="pw-title">ACCESS RESTRICTED</div>
+    <div class="pw-subtitle">CLASSIFICATION: TOP SECRET // CLAWCON</div>
+    <div class="pw-input-wrap">
+      <label>ENTER AUTHORIZATION CODE</label>
+      <input type="password" id="pw-input" autocomplete="off" spellcheck="false" placeholder="_ _ _ _ _ _ _ _ _ _">
+    </div>
+    <div class="pw-error-msg" id="pw-error"></div>
+    <div class="pw-hint">PRESS ENTER TO AUTHENTICATE</div>
+  </div>
 </div>
 
 <div id="app">
@@ -940,11 +1050,40 @@ async function runBoot() {
   }
   await sleep(1200);
   bootScreen.classList.add('hidden');
-  document.getElementById('app').classList.add('active');
-  setTimeout(() => { bootScreen.remove(); }, 1000);
+  setTimeout(() => {
+    bootScreen.remove();
+    document.getElementById('password-screen').classList.add('active');
+    setTimeout(() => document.getElementById('pw-input').focus(), 100);
+  }, 800);
 }
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+// ===== PASSWORD AUTH =====
+document.getElementById('pw-input').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    const input = this;
+    const errorMsg = document.getElementById('pw-error');
+    if (input.value.toLowerCase() === 'digitalgod') {
+      errorMsg.textContent = '> ACCESS GRANTED';
+      errorMsg.style.color = 'var(--green)';
+      input.style.borderColor = 'var(--green)';
+      input.disabled = true;
+      setTimeout(() => {
+        const pwScreen = document.getElementById('password-screen');
+        pwScreen.classList.add('hidden');
+        document.getElementById('app').classList.add('active');
+        setTimeout(() => pwScreen.remove(), 800);
+      }, 800);
+    } else {
+      errorMsg.textContent = '> ACCESS DENIED — INVALID CODE';
+      errorMsg.style.color = 'var(--red)';
+      input.classList.add('pw-error');
+      input.value = '';
+      setTimeout(() => input.classList.remove('pw-error'), 400);
+    }
+  }
+});
 
 function renderContacts() {
   const list = document.getElementById('contact-list');
